@@ -1,3 +1,5 @@
 .Tilt {
     background: linear-gradient(to left, rgb(45,78,118), rgb(219,180,0));
+    border: 1px solid white;
+    border-radius: 15%;
 }
