@@ -30,8 +30,12 @@ class SignIn extends React.Component {
                 this.props.loadUser(user);
                 this.props.onRouteChange('home');
                 
+            } else {
+                console.log('Signin Error happened.') //ALERT USER
             }
+
         })
+        .catch(err => console.log('Error:', err)) 
     
         
     }

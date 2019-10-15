@@ -20,27 +20,34 @@ class Register extends React.Component {
     }
     onSubmitRegister = (event) => {
         event.preventDefault();
-        fetch ( 'http://localhost:3000/register', {
-            method: 'post',
-            headers: { 'Content-type': 'application/json'},
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-                name: this.state.name
+        //from stackoverflow
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+       
+        if (this.state.name.length!==0 && this.state.password.length>= 6 && re.test(String(this.state.email).toLowerCase())) {
+            fetch ( 'http://localhost:3000/register', {
+                method: 'post',
+                headers: { 'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    email: this.state.email,
+                    password: this.state.password,
+                    name: this.state.name
+                })
             })
-        })
-        .then(response => response.json())
-        .then(user => {
-            if (user.id) {
-                this.props.loadUser(user);
-                this.props.onRouteChange('signin');
-            }
-        })
-        
+            .then(response => response.json())
+            .then(user => {
+                if (user.id) {
+                    this.props.loadUser(user);
+                    this.props.onRouteChange('signin');
+                }
+            })
+            .catch(err => console.log('Error:', err)) 
+        } else {
+            console.log('Error in registration data!'); //ALERT USER
+        }
         
     }
     render () {
-        //const {onRouteChange} = this.props;
+   
         return (
             <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                 <main className="pa4 black-80">
