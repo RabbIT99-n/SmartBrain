@@ -1,4 +1,5 @@
 import React from 'react';
+import './Register.css';
 
 class Register extends React.Component {
     constructor (props) {
@@ -6,7 +7,8 @@ class Register extends React.Component {
         this.state = {
             email: '',
             password: '',
-            name: ''
+            name: '',
+            errorPlaceholder: ''
         }
     }
     onNameChange =(event) => {
@@ -42,7 +44,7 @@ class Register extends React.Component {
             })
             .catch(err => console.log('Error:', err)) 
         } else {
-            console.log('Error in registration data!'); //ALERT USER
+            this.setState({ errorPlaceholder: 'There is a problem with your input data. Try again!'});
         }
         
     }
@@ -75,6 +77,7 @@ class Register extends React.Component {
                                 onClick={this.onSubmitRegister}/>
                     </div>
                     </form>
+                    <p className="error">{this.state.errorPlaceholder}</p>
                 </main>
             </article>
         );

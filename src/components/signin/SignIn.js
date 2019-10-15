@@ -1,11 +1,13 @@
 import React from 'react';
+import './SignIn.css';
 
 class SignIn extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
             signInEmail: '',
-            signInPass: ''
+            signInPass: '',
+            errorPlaceholder: ''
         }
     }
     onEmailChange =(event) => {
@@ -31,7 +33,7 @@ class SignIn extends React.Component {
                 this.props.onRouteChange('home');
                 
             } else {
-                console.log('Signin Error happened.') //ALERT USER
+                this.setState({ errorPlaceholder: 'Wrong username and password combination. Try again or register!'});
             }
 
         })
@@ -42,6 +44,7 @@ class SignIn extends React.Component {
 
     render () {
         const {onRouteChange} = this.props;
+        
         return (
             <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                 <main className="pa4 black-80">
@@ -68,7 +71,9 @@ class SignIn extends React.Component {
                         onClick={()=> onRouteChange('register')} >Register</p>
                     </div>
                     </form>
+                    <p className="error">{this.state.errorPlaceholder}</p>
                 </main>
+                
             </article>
         );
     }
