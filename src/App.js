@@ -86,9 +86,10 @@ loadUser = (data) => {
   }
   onButtonSubmit = () => {
     this.setState({imageURL: this.state.input});
-    fetch('http://localhost:3000/imageurl', {
+    fetch('https://git.heroku.com/aqueous-anchorage-08852.git/imageurl', {
       method: 'post',
-      headers: { 'Content-type': 'application/json'},
+      headers: {    'access-control-allow-origin' : '*',
+                    'Content-type': 'application/json'},
       body: JSON.stringify({
           input: this.state.input
       })
@@ -96,9 +97,10 @@ loadUser = (data) => {
     .then (response => response.json())
     .then( response => {
           if (response) {
-            fetch('http://localhost:3000/image', {
+            fetch('https://git.heroku.com/aqueous-anchorage-08852.git/image', {
               method: 'put',
-              headers: { 'Content-type': 'application/json'},
+              headers: {    'access-control-allow-origin' : '*',
+                         'Content-type': 'application/json'},
               body: JSON.stringify({
                   id: this.state.user.id
               })

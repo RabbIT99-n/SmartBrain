@@ -26,9 +26,12 @@ class Register extends React.Component {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
        
         if (this.state.name.length!==0 && this.state.password.length>= 6 && re.test(String(this.state.email).toLowerCase())) {
-            fetch ( 'http://localhost:3000/register', {
-                method: 'post',
-                headers: { 'Content-type': 'application/json'},
+            fetch ( 'https://git.heroku.com/aqueous-anchorage-08852.git/register', {
+            crossDomain:true,    
+            method: 'post',
+                
+                headers: {    'access-control-allow-origin' : '*',
+                         'Content-type': 'application/json'},
                 body: JSON.stringify({
                     email: this.state.email,
                     password: this.state.password,

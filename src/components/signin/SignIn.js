@@ -18,9 +18,11 @@ class SignIn extends React.Component {
     }
     onSubmitSignIn = (event) => {
         event.preventDefault();
-        fetch ( 'http://localhost:3000/signin', {
+        fetch ( 'https://git.heroku.com/aqueous-anchorage-08852.git/signin', {
+            crossDomain:true,
             method: 'post',
-            headers: { 'Content-type': 'application/json'},
+            headers: {    'access-control-allow-origin' : '*',
+                         'Content-type': 'application/json'},
             body: JSON.stringify({
                 email: this.state.signInEmail,
                 password: this.state.signInPass
