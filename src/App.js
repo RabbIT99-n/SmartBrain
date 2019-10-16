@@ -88,7 +88,7 @@ loadUser = (data) => {
     this.setState({imageURL: this.state.input});
     fetch('https://git.heroku.com/aqueous-anchorage-08852.git/imageurl', {
       method: 'post',
-      headers: {    'access-control-allow-origin' : '*',
+      headers: {    'access-control-allow-origin' : '*', // CORS error -not solved
                     'Content-type': 'application/json'},
       body: JSON.stringify({
           input: this.state.input
@@ -99,7 +99,7 @@ loadUser = (data) => {
           if (response) {
             fetch('https://git.heroku.com/aqueous-anchorage-08852.git/image', {
               method: 'put',
-              headers: {    'access-control-allow-origin' : '*',
+              headers: {    'access-control-allow-origin' : '*', // CORS error -not solved
                          'Content-type': 'application/json'},
               body: JSON.stringify({
                   id: this.state.user.id

@@ -19,9 +19,9 @@ class SignIn extends React.Component {
     onSubmitSignIn = (event) => {
         event.preventDefault();
         fetch ( 'https://git.heroku.com/aqueous-anchorage-08852.git/signin', {
-            crossDomain:true,
+            crossDomain:true, // CORS error -not solved
             method: 'post',
-            headers: {    'access-control-allow-origin' : '*',
+            headers: {    'access-control-allow-origin' : '*', // CORS error -not solved
                          'Content-type': 'application/json'},
             body: JSON.stringify({
                 email: this.state.signInEmail,

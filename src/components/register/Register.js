@@ -27,10 +27,10 @@ class Register extends React.Component {
        
         if (this.state.name.length!==0 && this.state.password.length>= 6 && re.test(String(this.state.email).toLowerCase())) {
             fetch ( 'https://git.heroku.com/aqueous-anchorage-08852.git/register', {
-            crossDomain:true,    
+            crossDomain:true,   // CORS error -not solved
             method: 'post',
                 
-                headers: {    'access-control-allow-origin' : '*',
+                headers: {    'access-control-allow-origin' : '*', // CORS error -not solved
                          'Content-type': 'application/json'},
                 body: JSON.stringify({
                     email: this.state.email,
